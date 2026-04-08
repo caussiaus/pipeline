@@ -1,18 +1,16 @@
-"""Dataset Builder — single-page Streamlit app.
+"""Dataset Builder — single-page IDE-style Streamlit app.
 
-Thread-based UX:
-  • Left sidebar   = thread history
-  • Main area      = active thread (landing → ingest → schema → table)
-  • Right panel    = live agent log + field inspector
-  • Bottom         = chat input (always available)
+Layout:
+  Left sidebar   = dark thread list
+  Main area      = table + schema + chat
+  Right panel    = field inspector
+  Bottom         = terminal (dark, monospace)
 
-Auth: set APP_PASSWORD in .streamlit/secrets.toml to gate the app.
+Auth: APP_PASSWORD in .streamlit/secrets.toml
 """
 from __future__ import annotations
-
 import sys
 from pathlib import Path
-
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[0]))
@@ -24,264 +22,371 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Global CSS ───────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --cream:       #F5F0E8;
-  --cream-mid:   #EDE7D9;
-  --cream-dark:  #DDD4C2;
-  --brown:       #1A120B;
-  --brown-mid:   #3D2B1F;
-  --brown-light: #6B4F3A;
-  --rule:        #C8BBA8;
-  --text-main:   #1A120B;
-  --text-muted:  #7A6652;
-  --radius:      4px;
-  --font:        'Inter', sans-serif;
-  --mono:        'JetBrains Mono', monospace;
+  --bg:          #FFFFFF;
+  --bg2:         #F7F7F7;
+  --sidebar:     #111111;
+  --border:      #DDDDDD;
+  --border2:     #BBBBBB;
+  --text:        #000000;
+  --text2:       #444444;
+  --text3:       #888888;
+  --accent:      #000000;
+  --green:       #1A8A3F;
+  --red:         #CC2222;
+  --yellow:      #996600;
+  --term-bg:     #111111;
+  --term-text:   #CCCCCC;
+  --term-green:  #4EC994;
+  --term-blue:   #9CDCFE;
+  --term-dim:    #555555;
+  --font:        'Inter', -apple-system, sans-serif;
+  --mono:        'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --r:           2px;
 }
 
+/* ── Reset ── */
 html, body, [data-testid="stAppViewContainer"],
 [data-testid="stMain"] {
-  background: var(--cream) !important;
-  font-family: var(--font);
-  color: var(--text-main);
+  background: var(--bg) !important;
+  font-family: var(--font) !important;
+  color: var(--text) !important;
 }
+[data-testid="stToolbar"], #MainMenu, footer, header { display: none !important; }
 
 /* ── Sidebar ── */
 [data-testid="stSidebar"] {
-  background: var(--brown) !important;
-  border-right: 1px solid var(--brown-mid);
-  min-width: 220px !important;
-  max-width: 240px !important;
+  background: var(--sidebar) !important;
+  border-right: 1px solid #222 !important;
+  min-width: 210px !important;
+  max-width: 230px !important;
 }
-[data-testid="stSidebar"] * { color: var(--cream) !important; }
-[data-testid="stSidebar"] hr { border-color: var(--brown-mid) !important; }
+[data-testid="stSidebar"] * { color: #CCCCCC !important; font-family: var(--font) !important; }
+[data-testid="stSidebar"] hr { border-color: #2A2A2A !important; }
 [data-testid="stSidebar"] .stButton > button {
-  background: var(--brown-mid) !important;
-  color: var(--cream) !important;
-  border: 1px solid var(--brown-light) !important;
-  font-size: 0.9rem !important;
+  background: #1C1C1C !important;
+  color: #CCCCCC !important;
+  border: 1px solid #2E2E2E !important;
+  font-size: 0.86rem !important;
+  font-family: var(--mono) !important;
   text-align: left !important;
-  padding: 8px 12px !important;
-  transition: background 0.12s;
+  padding: 7px 11px !important;
+  border-radius: var(--r) !important;
+  width: 100% !important;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
-  background: var(--brown-light) !important;
+  background: #252525 !important;
+  border-color: #4A4A4A !important;
+  color: #FFFFFF !important;
 }
-[data-testid="stSidebar"] .thread-active > .stButton > button {
-  border-color: #9DC8A0 !important;
-}
-
-/* ── Hide Streamlit chrome ── */
-[data-testid="stToolbar"], #MainMenu, footer, header { display: none !important; }
 
 /* ── Typography ── */
-h1 { font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em; color: var(--brown); }
-h2 { font-size: 1.25rem; font-weight: 500; color: var(--brown); }
-h3 { font-size: 1.05rem; font-weight: 500; color: var(--brown-mid); }
-p, li { font-size: 0.97rem; line-height: 1.7; }
-label { font-size: 0.93rem; font-weight: 500; color: var(--brown-mid); }
+h1 { font-size: 1.35rem !important; font-weight: 600 !important; color: #000 !important; letter-spacing: -0.02em; margin-bottom: 2px; }
+h2 { font-size: 1.1rem !important; font-weight: 600 !important; color: #000 !important; }
+h3 { font-size: 0.96rem !important; font-weight: 500 !important; color: #222 !important; }
+p, li { font-size: 0.93rem !important; line-height: 1.6; color: var(--text) !important; }
+label { font-size: 0.88rem !important; font-weight: 500 !important; color: #333 !important; }
+.stCaption > p { font-size: 0.78rem !important; color: var(--text3) !important; }
+code { font-family: var(--mono) !important; font-size: 0.82rem !important; background: var(--bg2) !important; color: #000 !important; padding: 1px 5px; border-radius: 2px; border: 1px solid var(--border); }
 
 /* ── Inputs ── */
-input[type="text"], textarea,
+input[type="text"], input[type="password"],
 [data-baseweb="input"] input,
 [data-baseweb="textarea"] textarea {
-  background: #FFFCF6 !important;
-  border: 1px solid var(--rule) !important;
-  border-radius: var(--radius) !important;
+  background: var(--bg) !important;
+  border: 1px solid var(--border2) !important;
+  border-radius: var(--r) !important;
   font-family: var(--font) !important;
-  font-size: 0.97rem !important;
-  color: var(--brown) !important;
+  font-size: 0.93rem !important;
+  color: var(--text) !important;
 }
-input[type="text"]:focus, textarea:focus {
-  border-color: var(--brown) !important;
-  box-shadow: 0 0 0 2px rgba(26,18,11,0.06) !important;
+input:focus, textarea:focus {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.06) !important;
+  outline: none !important;
 }
 
-/* ── Primary button ── */
+/* ── Buttons ── */
 .stButton > button {
-  background: var(--brown) !important;
-  color: var(--cream) !important;
+  background: #000 !important;
+  color: #fff !important;
   border: none !important;
-  border-radius: var(--radius) !important;
-  font-size: 0.95rem !important;
+  border-radius: var(--r) !important;
+  font-size: 0.88rem !important;
   font-weight: 500 !important;
-  padding: 9px 22px !important;
-  letter-spacing: 0.02em;
-  transition: background 0.12s;
+  padding: 8px 20px !important;
 }
-.stButton > button:hover { background: var(--brown-mid) !important; }
+.stButton > button:hover { background: #222 !important; }
 .stButton > button[kind="secondary"] {
-  background: transparent !important;
-  color: var(--brown) !important;
-  border: 1px solid var(--rule) !important;
+  background: #fff !important;
+  color: #000 !important;
+  border: 1px solid var(--border2) !important;
 }
 .stButton > button[kind="secondary"]:hover {
-  border-color: var(--brown) !important;
-  background: var(--cream-mid) !important;
+  background: var(--bg2) !important;
+  border-color: #888 !important;
 }
 
-/* ── Cards / expanders ── */
+/* ── Tabs ── */
+[data-testid="stTabs"] [role="tab"] { font-size: 0.88rem !important; color: var(--text2) !important; }
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] { color: #000 !important; font-weight: 600 !important; }
+[data-testid="stTabs"] [data-baseweb="tab-border"] { background: #000 !important; }
+
+/* ── Expander ── */
 [data-testid="stExpander"] {
-  border: 1px solid var(--cream-dark) !important;
-  border-radius: var(--radius) !important;
-  background: #FFFCF6 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  background: var(--bg) !important;
 }
+[data-testid="stExpander"] summary { font-size: 0.88rem !important; color: #333 !important; }
+
+/* ── Alerts ── */
 .stInfo, .stSuccess, .stWarning, .stError {
-  border-radius: var(--radius) !important;
-  font-size: 0.84rem !important;
+  border-radius: var(--r) !important;
+  font-size: 0.88rem !important;
 }
+.stInfo    { background: #F0F4FF !important; border-left: 3px solid #4466CC !important; }
+.stSuccess { background: #F0F9F3 !important; border-left: 3px solid var(--green) !important; }
+.stWarning { background: #FFF9F0 !important; border-left: 3px solid var(--yellow) !important; }
+.stError   { background: #FFF0F0 !important; border-left: 3px solid var(--red) !important; }
+
+/* ── Metrics ── */
+[data-testid="stMetric"] {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 8px 12px;
+}
+[data-testid="stMetricLabel"] { font-size: 0.72rem !important; color: var(--text3) !important; text-transform: uppercase; letter-spacing: 0.06em; }
+[data-testid="stMetricValue"] { font-size: 1.1rem !important; font-weight: 600 !important; color: #000 !important; }
+
+/* ── Progress ── */
+[data-testid="stProgress"] > div > div { background: #000 !important; }
+
+/* ── Dataframe ── */
+[data-testid="stDataFrame"] { border: 1px solid var(--border) !important; border-radius: var(--r) !important; }
 
 /* ── Chat ── */
 [data-testid="stChatMessage"] {
-  background: #FFFCF6 !important;
-  border: 1px solid var(--cream-dark) !important;
-  border-radius: var(--radius) !important;
-  margin-bottom: 5px !important;
+  background: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--r) !important;
+  margin-bottom: 4px !important;
   padding: 8px 12px !important;
 }
-[data-testid="stChatInputContainer"] {
-  background: #FFFCF6 !important;
-  border-top: 1px solid var(--cream-dark) !important;
-}
 
-/* ── Agent log ── */
-.agent-log {
-  font-family: var(--mono);
-  font-size: 0.83rem;
-  line-height: 1.75;
-  background: var(--brown);
-  color: var(--cream-dark);
-  padding: 14px 16px;
-  border-radius: var(--radius);
-  height: 280px;
-  overflow-y: auto;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-.log-info  { color: #9DC8A0; }
-.log-warn  { color: #E6C97A; }
-.log-error { color: #E88080; }
-.log-dim   { color: #7A6652; }
-.log-step  { color: #F5F0E8; font-weight: 600; }
-
-/* ── Frozen table ── */
-.frozen-table-wrap {
+/* ── Grid table (main data view) ── */
+.grid-wrap {
   overflow: auto;
-  max-height: 52vh;
-  border: 1px solid var(--cream-dark);
-  border-radius: 4px;
-  background: #FFFCF6;
+  max-height: 50vh;
+  border: 1px solid var(--border2);
+  background: var(--bg);
+  border-radius: var(--r);
 }
-.frozen-table {
+.grid-table {
   border-collapse: collapse;
   width: max-content;
   min-width: 100%;
   font-size: 0.88rem;
   font-family: var(--font);
 }
-.frozen-table thead {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--cream-mid);
-}
-.frozen-table th {
+.grid-table thead { position: sticky; top: 0; z-index: 10; background: var(--bg2); }
+.grid-table th {
   padding: 8px 14px;
-  text-align: left;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--brown-mid);
-  border-bottom: 2px solid var(--cream-dark);
+  letter-spacing: 0.06em;
+  color: #333;
+  border-bottom: 2px solid var(--border2);
+  border-right: 1px solid var(--border);
   white-space: nowrap;
-  cursor: pointer;
+  text-align: left;
   user-select: none;
 }
-.frozen-table th:hover { background: var(--cream-dark); color: var(--brown); }
-.frozen-table th.th-active { background: var(--brown); color: var(--cream) !important; }
-.frozen-table td {
+.grid-table th.th-active { background: #000; color: #fff; }
+.grid-table th:last-child { border-right: none; }
+.grid-table td {
   padding: 7px 14px;
-  border-bottom: 1px solid #EDE7D9;
-  color: var(--brown);
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  color: var(--text);
   white-space: nowrap;
   max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.88rem;
+  vertical-align: top;
 }
-.frozen-table tr:hover td { background: #FAF6EE; }
-.frozen-table .null { color: #C8BBA8; }
-.frozen-table .bool-t { color: #5A7A4A; font-weight: 600; }
-.frozen-table .bool-f { color: #9E5A5A; }
+.grid-table td.row-num { color: var(--text3); font-family: var(--mono); font-size: 0.8rem; background: var(--bg2); border-right: 2px solid var(--border2) !important; }
+.grid-table td:last-child { border-right: none; }
+.grid-table tr:hover td { background: #F5F5F5 !important; }
+.grid-table tr:hover td.row-num { background: #EBEBEB !important; }
+.grid-table .null { color: #CCC; font-style: italic; }
+.grid-table .bool-t { color: var(--green); font-family: var(--mono); font-weight: 600; }
+.grid-table .bool-f { color: var(--red); font-family: var(--mono); }
+.grid-table .annotated { border-left: 3px solid var(--yellow) !important; }
+.grid-table th.header-only { color: #000; background: #F0F0F0; font-size: 0.82rem; padding: 10px 14px; }
 
-/* ── Field card ── */
-.field-card {
-  background: #FFFCF6;
-  border: 1px solid var(--cream-dark);
-  border-radius: var(--radius);
-  padding: 9px 12px;
-  margin-bottom: 5px;
-  font-size: 0.82rem;
+/* ── Field chip strip (above table) ── */
+.field-strip {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 6px 0 10px;
+  scrollbar-width: thin;
 }
-.field-note {
-  background: var(--cream-mid);
-  border-left: 3px solid var(--brown-light);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 6px 10px;
+.field-chip {
+  display: inline-block;
+  font-family: var(--mono);
   font-size: 0.78rem;
-  color: var(--brown-mid);
+  padding: 4px 10px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  background: var(--bg);
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.08s;
+}
+.field-chip:hover, .field-chip.active { background: #000; color: #fff; border-color: #000; }
+.field-chip .chip-type { font-size: 0.68rem; color: #888; margin-left: 5px; }
+.field-chip.active .chip-type { color: #888; }
+
+/* ── Agent log ── */
+.agent-log {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  background: var(--term-bg);
+  color: var(--term-text);
+  padding: 12px 14px;
+  border-radius: var(--r);
+  height: 200px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.log-info  { color: var(--term-green); }
+.log-warn  { color: #DDB555; }
+.log-error { color: #F14C4C; }
+.log-dim   { color: var(--term-dim); }
+.log-step  { color: var(--term-blue); font-weight: 600; }
+
+/* ── Terminal area ── */
+.terminal-wrap {
+  background: var(--term-bg);
+  border: 1px solid #2A2A2A;
+  border-radius: var(--r);
+  padding: 10px 14px 6px;
   margin-top: 4px;
 }
-
-/* ── Metrics ── */
-[data-testid="stMetric"] {
-  background: #FFFCF6;
-  border: 1px solid var(--cream-dark);
-  border-radius: var(--radius);
-  padding: 8px 12px;
+.terminal-history {
+  max-height: 100px;
+  overflow-y: auto;
+  margin-bottom: 6px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
 }
-[data-testid="stMetricLabel"] { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
-[data-testid="stMetricValue"] { font-size: 1.15rem; font-weight: 600; color: var(--brown); }
+.t-line { line-height: 1.6; color: var(--term-text); }
+.t-prompt { color: var(--term-green); }
+.t-assistant { color: var(--term-blue); }
+.t-system { color: var(--term-dim); }
 
-/* ── Progress ── */
-[data-testid="stProgress"] > div > div { background: var(--brown) !important; }
+/* Terminal textarea overrides */
+.terminal-input textarea {
+  background: var(--term-bg) !important;
+  color: var(--term-text) !important;
+  border: 1px solid #333 !important;
+  font-family: var(--mono) !important;
+  font-size: 0.88rem !important;
+  border-radius: var(--r) !important;
+  caret-color: var(--term-green) !important;
+}
+.terminal-input textarea:focus {
+  border-color: #555 !important;
+  box-shadow: none !important;
+}
+.terminal-input label { color: var(--term-dim) !important; font-family: var(--mono) !important; font-size: 0.76rem !important; }
 
-hr { border: none; border-top: 1px solid var(--cream-dark); margin: 1rem 0; }
+/* ── Inspector panel ── */
+.inspector-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+  margin-top: 2px;
+}
+.inspector-field {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 9px 12px;
+  margin-bottom: 6px;
+  background: var(--bg);
+}
+.insp-name { font-family: var(--mono); font-size: 0.9rem; font-weight: 600; color: #000; }
+.insp-type { font-size: 0.72rem; color: #888; background: var(--bg2); border: 1px solid var(--border); padding: 1px 7px; border-radius: 2px; margin-left: 6px; font-family: var(--mono); }
+.insp-desc { font-size: 0.84rem; color: #444; margin-top: 4px; line-height: 1.5; }
+.insp-instr { font-size: 0.8rem; color: #555; background: var(--bg2); border-radius: var(--r); padding: 6px 9px; margin-top: 6px; border-left: 3px solid var(--border2); }
+.evidence-quote {
+  font-size: 0.83rem;
+  background: #FFFBF0;
+  border: 1px solid #E8DFC8;
+  border-radius: var(--r);
+  padding: 7px 10px;
+  color: #444;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* ── Cell annotation ── */
+.cell-ann-panel {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 14px;
+  margin-top: 8px;
+}
+.cell-val-display {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 5px 9px;
+  border-radius: var(--r);
+  color: #000;
+  margin-bottom: 6px;
+}
+
+hr { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
 </style>
 """, unsafe_allow_html=True)
 
 
 # ── Auth gate ────────────────────────────────────────────────────────────────
 
-def _auth_gate() -> bool:
-    """Return True if user is allowed in. Shows login form if password is set."""
-    required = st.secrets.get("APP_PASSWORD", "")
-    if not required:
-        return True
-    if st.session_state.get("_authed"):
+def _auth() -> bool:
+    pw = st.secrets.get("APP_PASSWORD", "")
+    if not pw or st.session_state.get("_authed"):
         return True
 
-    st.markdown("""
-<div style='max-width:380px;margin:90px auto 0;padding:0 16px'>
-  <h1 style='text-align:center;margin-bottom:4px'>Dataset Builder</h1>
-  <p style='text-align:center;color:var(--text-muted);margin-bottom:28px;font-size:0.87rem'>
-    Enter your team password to continue
-  </p>
-</div>""", unsafe_allow_html=True)
-
-    col = st.columns([1, 2, 1])[1]
-    with col:
-        with st.form("_login_form", clear_on_submit=True):
-            pw = st.text_input("Password", type="password", label_visibility="collapsed",
-                               placeholder="Team password…")
+    c = st.columns([1, 2, 1])[1]
+    with c:
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.markdown("## Dataset Builder")
+        st.caption("Enter your team password to continue.")
+        with st.form("_login"):
+            entered = st.text_input("Password", type="password",
+                                    label_visibility="collapsed",
+                                    placeholder="Team password…")
             if st.form_submit_button("Sign in →", use_container_width=True, type="primary"):
-                if pw == required:
+                if entered == pw:
                     st.session_state["_authed"] = True
                     st.rerun()
                 else:
@@ -289,31 +394,30 @@ def _auth_gate() -> bool:
     return False
 
 
-if not _auth_gate():
+if not _auth():
     st.stop()
 
 
-# ── Thread sidebar ───────────────────────────────────────────────────────────
+# ── Thread sidebar ────────────────────────────────────────────────────────────
 
 from app_pages.thread_store import Thread, delete_thread, list_threads, load_thread
 
 with st.sidebar:
     st.markdown(
-        "<div style='font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;"
-        "padding:4px 0 10px'>📄 Dataset Builder</div>",
+        "<div style='font-family:var(--mono);font-size:0.9rem;font-weight:600;"
+        "padding:6px 2px 12px;color:#EEE;letter-spacing:-0.01em'>📄 Dataset Builder</div>",
         unsafe_allow_html=True,
     )
-
-    if st.button("＋  New analysis", key="_new_thread", use_container_width=True):
-        for k in [k for k in st.session_state if k.startswith("ws_")]:
+    if st.button("＋  New analysis", key="_new", use_container_width=True):
+        for k in [k for k in st.session_state if k.startswith("ws_") or k.startswith("_ws")]:
             del st.session_state[k]
         st.session_state.pop("active_thread_id", None)
         st.rerun()
 
-    st.markdown("<hr style='margin:10px 0'>", unsafe_allow_html=True)
+    st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
-        "<div style='font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;"
-        "color:#6B4F3A;margin-bottom:6px'>Threads</div>",
+        "<div style='font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;"
+        "color:#555;margin-bottom:6px;font-family:var(--mono)'>THREADS</div>",
         unsafe_allow_html=True,
     )
 
@@ -322,37 +426,47 @@ with st.sidebar:
 
     if not threads:
         st.markdown(
-            "<div style='font-size:0.78rem;color:#6B4F3A;padding:4px 2px'>"
-            "No threads yet — start a new analysis.</div>",
-            unsafe_allow_html=True,
+            "<div style='font-size:0.8rem;color:#555;padding:4px 2px'>"
+            "No threads yet.</div>", unsafe_allow_html=True,
         )
+
+    STATUS_ICON = {
+        "new": "○", "ingesting": "◑", "schema": "◈",
+        "extracting": "◑", "preview": "◆", "approve": "◆",
+        "full_ingesting": "◑", "full_extracting": "◑", "done": "●", "failed": "✗",
+    }
+    STATUS_COLOR = {
+        "ingesting": "#DDB555", "extracting": "#DDB555",
+        "full_ingesting": "#DDB555", "full_extracting": "#DDB555",
+        "preview": "#4EC994", "done": "#4EC994",
+        "failed": "#F14C4C", "schema": "#9CDCFE",
+    }
 
     for t in threads:
         is_active = active_id == t.thread_id
-        label = ("▶  " if is_active else "    ") + t.title[:26]
+        icon = STATUS_ICON.get(t.status, "○")
+        dot_color = STATUS_COLOR.get(t.status, "#555")
+        label = ("▶  " if is_active else "   ") + t.title[:22]
         if st.button(label, key=f"_th_{t.thread_id}", use_container_width=True,
                      help=f"{t.status} · {t.topic[:60]}"):
+            for k in [k for k in st.session_state if k.startswith("ws_") or k.startswith("_ws")]:
+                del st.session_state[k]
             st.session_state["active_thread_id"] = t.thread_id
-            # clear in-flight subprocess refs so they don't bleed across threads
-            for k in ("ws_proc", "ws_queue"):
-                st.session_state.pop(k, None)
             st.rerun()
         st.markdown(
-            f"<div style='font-size:0.78rem;color:{t.status_color};"
-            f"margin:-8px 0 8px 4px'>● {t.status} · {t.age_label}</div>",
+            f"<div style='font-family:var(--mono);font-size:0.72rem;color:{dot_color};"
+            f"margin:-8px 0 6px 4px'>{icon} {t.status} · {t.age_label}</div>",
             unsafe_allow_html=True,
         )
 
-    # Sign-out (if auth is active)
     if st.secrets.get("APP_PASSWORD", ""):
-        st.markdown("<hr style='margin:10px 0'>", unsafe_allow_html=True)
-        if st.button("Sign out", key="_signout", use_container_width=True):
+        st.markdown("<hr>", unsafe_allow_html=True)
+        if st.button("Sign out", key="_so", use_container_width=True):
             st.session_state.pop("_authed", None)
             st.rerun()
 
 
-# ── Main workspace ───────────────────────────────────────────────────────────
+# ── Main workspace ────────────────────────────────────────────────────────────
 
 from app_pages import workspace
-
 workspace.render(active_thread_id=st.session_state.get("active_thread_id"))
