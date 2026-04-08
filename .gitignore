@@ -57,9 +57,8 @@ output/corpus_configs/*.yaml
 output/sft/*.jsonl
 output/sft/*.parquet
 
-# ── Streamlit cache ─────────────────────────────────────────────────────────
-.streamlit/
-!.streamlit/config.toml
+# ── Streamlit cache / secrets ───────────────────────────────────────────────
+.streamlit/secrets.toml
 
 # ── Jupyter ─────────────────────────────────────────────────────────────────
 .ipynb_checkpoints/
