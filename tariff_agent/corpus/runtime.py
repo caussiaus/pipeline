@@ -54,11 +54,33 @@ def normalize_pdf_root(pdf_root: str, project_root: Path) -> Path:
     return (project_root / p).resolve()
 
 
+def ensure_corpus_output_dirs(cfg: CorpusConfig, project_root: Path) -> None:
+    """Create every corpus output directory so parquet/csv writes never fail."""
+    dir_attrs = ("doc_json_dir", "datasets_dir", "feedback_dir")
+    file_attrs = (
+        "parse_index_csv",
+        "chunks_parquet",
+        "chunks_llm_parquet",
+        "filings_llm_parquet",
+        "docs_llm_csv",
+        "consistency_report_csv",
+    )
+    for attr in dir_attrs:
+        rel = getattr(cfg, attr, "") or ""
+        if rel:
+            cfg.resolve(rel, project_root).mkdir(parents=True, exist_ok=True)
+    for attr in file_attrs:
+        rel = getattr(cfg, attr, "") or ""
+        if rel:
+            cfg.resolve(rel, project_root).parent.mkdir(parents=True, exist_ok=True)
+
+
 def apply_corpus_env(cfg: CorpusConfig, project_root: Path) -> dict[str, str]:
     """Set ``os.environ`` for pipeline stages. Returns the dict applied."""
     overrides = corpus_settings_overrides(cfg, project_root)
     for k, v in overrides.items():
         os.environ[k] = v
+    ensure_corpus_output_dirs(cfg, project_root)
     return overrides
 
 

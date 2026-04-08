@@ -833,6 +833,7 @@ async def _async_run_llm_docs(
     out_csv = settings.resolve(settings.filings_llm_csv)
     out_pq = settings.resolve(settings.filings_llm_parquet)
     out_csv.parent.mkdir(parents=True, exist_ok=True)
+    out_pq.parent.mkdir(parents=True, exist_ok=True)
 
     if (
         not force

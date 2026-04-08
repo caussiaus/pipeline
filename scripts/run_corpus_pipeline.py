@@ -101,6 +101,13 @@ def main() -> None:
 
     from tariff_agent.corpus.runtime import apply_corpus_env
     from tariff_agent.utils.config import ensure_hf_hub_env_for_process
+    import warnings
+
+    try:
+        from requests.exceptions import RequestsDependencyWarning
+        warnings.filterwarnings("ignore", category=RequestsDependencyWarning)
+    except Exception:
+        pass
 
     ensure_hf_hub_env_for_process()
     applied = apply_corpus_env(corpus_cfg, project_root)

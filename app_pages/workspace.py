@@ -238,19 +238,41 @@ def _save_uploaded_pdfs(files, thread_id: str) -> str:
 def _parse_json_schema(content: bytes | str) -> list[dict] | None:
     """Parse a JSON schema spec file into a list of column dicts."""
     try:
+        if isinstance(content, bytes):
+            content = content.decode("utf-8-sig")
         data = json.loads(content)
         if isinstance(data, list):
-            return data
+            out = [x for x in data if isinstance(x, dict)]
+            return out or None
         if isinstance(data, dict):
+            # JSON Schema: {"type":"object","properties":{"col":{"type":"string","description":"..."}}}
+            props = data.get("properties")
+            if isinstance(props, dict):
+                cols = []
+                for name, spec in props.items():
+                    if isinstance(spec, dict):
+                        cols.append({
+                            "name": name,
+                            "type": str(spec.get("type", "string")),
+                            "description": str(spec.get("description", "") or spec.get("title", "")),
+                        })
+                if cols:
+                    return cols
             # Accept {"fields": [...]} or {"columns": [...]} or {"schema": [...]}
-            for key in ("fields", "columns", "schema", "properties"):
+            for key in ("fields", "columns", "schema"):
                 if key in data and isinstance(data[key], list):
-                    return data[key]
-            # Accept {"field_name": {"type": ..., "description": ...}} style
+                    out = [x for x in data[key] if isinstance(x, dict)]
+                    if out:
+                        return out
+            # Accept {"field_name": {"type": ..., "description": ...}} style (flat map)
             cols = []
+            skip = {"$schema", "type", "title", "description", "properties", "fields"}
             for name, meta in data.items():
-                if isinstance(meta, dict):
-                    cols.append({"name": name, **meta})
+                if name in skip:
+                    continue
+                if isinstance(meta, dict) and ("type" in meta or "description" in meta):
+                    row = {"name": name, **meta}
+                    cols.append(row)
             if cols:
                 return cols
     except Exception:
@@ -406,29 +428,49 @@ def _render_landing() -> None:
                 key="landing_schema_json",
                 label_visibility="collapsed",
                 help=(
-                    'Format: [{"name": "field", "type": "string", "description": "..."}] '
-                    'or {"fields": [...]}'
+                    "Array of fields, or {\"fields\": [...]}, or JSON Schema "
+                    "{\"properties\": {\"col\": {\"type\": \"string\", \"description\": \"...\"}}}"
                 ),
             )
             if schema_file:
-                parsed = _parse_json_schema(schema_file.read())
-                if parsed:
-                    st.success(f"Schema spec loaded — {len(parsed)} fields defined.")
-                    st.session_state["landing_parsed_schema"] = parsed
-                    if not st.session_state.get("landing_topic"):
-                        st.session_state["landing_topic"] = (
-                            f"Extract fields as specified in the uploaded schema: "
-                            + ", ".join(c.get("name","?") for c in parsed[:6])
+                sig = f"{schema_file.name}:{getattr(schema_file, 'size', 0)}"
+                if st.session_state.get("_landing_json_sig") != sig:
+                    try:
+                        schema_file.seek(0)
+                    except Exception:
+                        pass
+                    raw = schema_file.read()
+                    parsed = _parse_json_schema(raw)
+                    if parsed:
+                        st.session_state["_landing_json_sig"] = sig
+                        st.success(f"Schema spec loaded — {len(parsed)} fields defined.")
+                        st.session_state["landing_parsed_schema"] = parsed
+                        names = ", ".join(c.get("name", "?") for c in parsed[:8])
+                        auto = f"Extract fields per uploaded schema: {names}"
+                        if len(parsed) > 8:
+                            auto += " …"
+                        st.session_state["landing_topic"] = auto
+                    else:
+                        st.error(
+                            "Couldn't parse that JSON. Use a field array, "
+                            '{"fields": [...]}, or JSON Schema "properties".'
                         )
-                else:
-                    st.error("Couldn't parse the JSON file. See tooltip for expected format.")
+                elif st.session_state.get("landing_parsed_schema"):
+                    st.success(
+                        f"Schema ready — {len(st.session_state['landing_parsed_schema'])} fields."
+                    )
 
         st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
 
         # ── Start button ─────────────────────────────────────────────────────
-        has_docs = bool(uploaded) or bool(docs_dir_path.strip() if 'docs_dir_path' in dir() else "")
-        has_name = bool(corpus_name.strip())
-        has_topic = bool(topic.strip() if 'topic' in dir() else st.session_state.get("landing_parsed_schema"))
+        topic_ss = (st.session_state.get("landing_topic") or "").strip()
+        path_ss  = (st.session_state.get("landing_docs_dir") or "").strip()
+        name_ss  = (st.session_state.get("landing_corpus_name") or "").strip()
+        parsed_ss = st.session_state.get("landing_parsed_schema")
+
+        has_docs  = bool(uploaded) or bool(path_ss)
+        has_name  = bool(name_ss)
+        has_topic = bool(topic_ss) or bool(parsed_ss)
 
         if st.button(
             "Start analysis →",
@@ -437,18 +479,30 @@ def _render_landing() -> None:
             key="landing_start",
             disabled=not (has_docs and has_name and has_topic),
         ):
-            _do_start(uploaded, docs_dir_path if 'docs_dir_path' in dir() else "",
-                      corpus_name, topic if 'topic' in dir() else "")
+            _do_start(
+                uploaded,
+                path_ss,
+                name_ss,
+                topic_ss,
+            )
 
 
 def _do_start(uploaded_files, docs_dir_path: str, corpus_name: str, topic: str) -> None:
     from app_pages.thread_store import Thread as TThread
     import traceback as tb
 
+    pre_schema = st.session_state.get("landing_parsed_schema")
+    topic_final = (topic or "").strip()
+    if not topic_final and pre_schema:
+        names = ", ".join(c.get("name", "?") for c in pre_schema[:10])
+        topic_final = f"Extract data per uploaded JSON schema ({len(pre_schema)} fields): {names}"
+    if not topic_final:
+        topic_final = "Extract structured data"
+
     t = TThread.create(
         docs_dir="",
         corpus_name=corpus_name.strip(),
-        topic=topic.strip() or "Extract structured data",
+        topic=topic_final,
         trial_n=7,
     )
     t.status = "ingesting"
@@ -466,13 +520,14 @@ def _do_start(uploaded_files, docs_dir_path: str, corpus_name: str, topic: str) 
                 t.add_log(f"<span class='log-info'>Using folder: {t.docs_dir}</span>")
 
             # Inject pre-parsed schema if provided
-            if st.session_state.get("landing_parsed_schema"):
+            if pre_schema:
                 st.session_state["ws_ds"] = {
-                    "proposed_columns": st.session_state["landing_parsed_schema"],
+                    "proposed_columns": list(pre_schema),
                     "_schema_preloaded": True,
                 }
-                t.add_log(f"<span class='log-info'>Pre-loaded schema: "
-                          f"{len(st.session_state['landing_parsed_schema'])} fields</span>")
+                t.add_log(
+                    f"<span class='log-info'>Pre-loaded schema: {len(pre_schema)} fields</span>"
+                )
 
             cfg, n = _make_corpus_config(t)
             if n == 0:
@@ -490,6 +545,7 @@ def _do_start(uploaded_files, docs_dir_path: str, corpus_name: str, topic: str) 
     _launch_ingest(t, trial_n=t.trial_n)
     st.session_state["active_thread_id"] = t.thread_id
     st.session_state.pop("landing_parsed_schema", None)
+    st.session_state.pop("_landing_json_sig", None)
     st.rerun()
 
 
@@ -618,27 +674,39 @@ def _schema_chat_area(t: Thread, ds: dict) -> None:
         )
 
     if extra_file:
-        if extra_file.name.endswith(".json"):
-            parsed = _parse_json_schema(extra_file.read())
-            if parsed:
-                ds["proposed_columns"] = parsed
-                st.session_state["ws_ds"] = ds
-                t.add_chat("assistant",
-                           f"Loaded schema spec from `{extra_file.name}` — "
-                           f"{len(parsed)} fields applied.")
+        sig = f"{extra_file.name}:{getattr(extra_file, 'size', 0)}"
+        done_key = f"_schema_attach_sig_{t.thread_id}"
+        if st.session_state.get(done_key) != sig:
+            try:
+                extra_file.seek(0)
+            except Exception:
+                pass
+            if extra_file.name.lower().endswith(".json"):
+                parsed = _parse_json_schema(extra_file.read())
+                if parsed:
+                    ds["proposed_columns"] = parsed
+                    st.session_state["ws_ds"] = ds
+                    st.session_state[done_key] = sig
+                    t.add_chat(
+                        "assistant",
+                        f"Loaded schema spec from `{extra_file.name}` — "
+                        f"{len(parsed)} fields applied.",
+                    )
+                    save_thread(t)
+                    st.rerun()
+                else:
+                    st.error("Couldn't parse JSON schema.")
+            elif extra_file.name.lower().endswith(".pdf"):
+                dest = _UPLOADS_DIR / t.thread_id / extra_file.name
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes(extra_file.read())
+                st.session_state[done_key] = sig
+                t.add_chat(
+                    "assistant",
+                    f"Saved `{extra_file.name}` for reference. "
+                    f"Mention it in your chat if you want the model to consider it.",
+                )
                 save_thread(t)
-                st.rerun()
-            else:
-                st.error("Couldn't parse JSON schema.")
-        elif extra_file.name.endswith(".pdf"):
-            # Save and add to context note
-            dest = _UPLOADS_DIR / t.thread_id / extra_file.name
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_bytes(extra_file.read())
-            t.add_chat("assistant",
-                       f"Saved `{extra_file.name}` for reference. "
-                       f"Mention this document in your chat message to use it.")
-            save_thread(t)
 
     prompt = st.chat_input(
         "Refine schema — or describe changes… e.g. 'add a target year field', 'merge X and Y'",
