@@ -64,9 +64,9 @@ html, body, [data-testid="stAppViewContainer"],
   background: var(--brown-mid) !important;
   color: var(--cream) !important;
   border: 1px solid var(--brown-light) !important;
-  font-size: 0.82rem !important;
+  font-size: 0.9rem !important;
   text-align: left !important;
-  padding: 6px 10px !important;
+  padding: 8px 12px !important;
   transition: background 0.12s;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
@@ -80,11 +80,11 @@ html, body, [data-testid="stAppViewContainer"],
 [data-testid="stToolbar"], #MainMenu, footer, header { display: none !important; }
 
 /* ── Typography ── */
-h1 { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; color: var(--brown); }
-h2 { font-size: 1.05rem; font-weight: 500; color: var(--brown); }
-h3 { font-size: 0.92rem; font-weight: 500; color: var(--brown-mid); }
-p, li { font-size: 0.87rem; line-height: 1.65; }
-label { font-size: 0.81rem; font-weight: 500; color: var(--brown-mid); }
+h1 { font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em; color: var(--brown); }
+h2 { font-size: 1.25rem; font-weight: 500; color: var(--brown); }
+h3 { font-size: 1.05rem; font-weight: 500; color: var(--brown-mid); }
+p, li { font-size: 0.97rem; line-height: 1.7; }
+label { font-size: 0.93rem; font-weight: 500; color: var(--brown-mid); }
 
 /* ── Inputs ── */
 input[type="text"], textarea,
@@ -94,7 +94,7 @@ input[type="text"], textarea,
   border: 1px solid var(--rule) !important;
   border-radius: var(--radius) !important;
   font-family: var(--font) !important;
-  font-size: 0.86rem !important;
+  font-size: 0.97rem !important;
   color: var(--brown) !important;
 }
 input[type="text"]:focus, textarea:focus {
@@ -108,9 +108,9 @@ input[type="text"]:focus, textarea:focus {
   color: var(--cream) !important;
   border: none !important;
   border-radius: var(--radius) !important;
-  font-size: 0.82rem !important;
+  font-size: 0.95rem !important;
   font-weight: 500 !important;
-  padding: 7px 18px !important;
+  padding: 9px 22px !important;
   letter-spacing: 0.02em;
   transition: background 0.12s;
 }
@@ -152,13 +152,13 @@ input[type="text"]:focus, textarea:focus {
 /* ── Agent log ── */
 .agent-log {
   font-family: var(--mono);
-  font-size: 0.73rem;
-  line-height: 1.7;
+  font-size: 0.83rem;
+  line-height: 1.75;
   background: var(--brown);
   color: var(--cream-dark);
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: var(--radius);
-  height: 260px;
+  height: 280px;
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-all;
@@ -181,7 +181,7 @@ input[type="text"]:focus, textarea:focus {
   border-collapse: collapse;
   width: max-content;
   min-width: 100%;
-  font-size: 0.75rem;
+  font-size: 0.88rem;
   font-family: var(--font);
 }
 .frozen-table thead {
@@ -191,14 +191,14 @@ input[type="text"]:focus, textarea:focus {
   background: var(--cream-mid);
 }
 .frozen-table th {
-  padding: 6px 12px;
+  padding: 8px 14px;
   text-align: left;
   font-weight: 600;
-  font-size: 0.71rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--brown-mid);
-  border-bottom: 1px solid var(--cream-dark);
+  border-bottom: 2px solid var(--cream-dark);
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
@@ -206,13 +206,14 @@ input[type="text"]:focus, textarea:focus {
 .frozen-table th:hover { background: var(--cream-dark); color: var(--brown); }
 .frozen-table th.th-active { background: var(--brown); color: var(--cream) !important; }
 .frozen-table td {
-  padding: 5px 12px;
+  padding: 7px 14px;
   border-bottom: 1px solid #EDE7D9;
   color: var(--brown);
   white-space: nowrap;
-  max-width: 200px;
+  max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 0.88rem;
 }
 .frozen-table tr:hover td { background: #FAF6EE; }
 .frozen-table .null { color: #C8BBA8; }
@@ -337,8 +338,8 @@ with st.sidebar:
                 st.session_state.pop(k, None)
             st.rerun()
         st.markdown(
-            f"<div style='font-size:0.69rem;color:{t.status_color};"
-            f"margin:-8px 0 6px 4px'>● {t.status} · {t.age_label}</div>",
+            f"<div style='font-size:0.78rem;color:{t.status_color};"
+            f"margin:-8px 0 8px 4px'>● {t.status} · {t.age_label}</div>",
             unsafe_allow_html=True,
         )
 
