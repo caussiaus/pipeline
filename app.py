@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[0]))
 
 st.set_page_config(
     page_title="Corpus Dataset Builder",
-    page_icon="◆",
+    page_icon="📄",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -314,14 +314,14 @@ from app_pages import browse, build_dataset, corpus_setup, datasets, feedback, w
 # ── Navigation ─────────────────────────────────────────────────────────────
 pages = {
     "": [
-        st.Page(workspace.page, title="Workspace", icon="○", url_path="workspace", default=True),
+        st.Page(workspace.page, title="Workspace", icon="🗂️", url_path="workspace", default=True),
     ],
     "Advanced": [
-        st.Page(corpus_setup.page,  title="Corpus Setup",   icon="○", url_path="corpus_setup"),
-        st.Page(browse.page,        title="Browse & Evidence", icon="○", url_path="browse"),
-        st.Page(build_dataset.page, title="Build Dataset",  icon="○", url_path="build_dataset"),
-        st.Page(datasets.page,      title="Saved Datasets", icon="○", url_path="datasets"),
-        st.Page(feedback.page,      title="Feedback & SFT", icon="○", url_path="feedback"),
+        st.Page(corpus_setup.page,  title="Corpus Setup",   icon="📂", url_path="corpus_setup"),
+        st.Page(browse.page,        title="Browse & Evidence", icon="🔍", url_path="browse"),
+        st.Page(build_dataset.page, title="Build Dataset",  icon="🧩", url_path="build_dataset"),
+        st.Page(datasets.page,      title="Saved Datasets", icon="📊", url_path="datasets"),
+        st.Page(feedback.page,      title="Feedback & SFT", icon="✏️", url_path="feedback"),
     ],
 }
 
