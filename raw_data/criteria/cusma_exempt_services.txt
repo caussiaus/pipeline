@@ -1,0 +1,21 @@
+ACTIVE TARIFF INSTRUMENT: cusma_exempt_services
+LEGAL BASIS: CUSMA Chapters 15 (financial services), 16 (temporary entry of business persons)
+
+SERVICES EXEMPTION:
+- Professional services, financial services, IT/software, digital content: NO product tariff
+- CUSMA Ch. 15 explicitly covers cross-border financial services
+- Ch. 16 covers temporary entry of business persons — not affected by goods tariffs
+
+SUBSIDIARY/HOLDING EXPOSURE:
+- If issuer holds subsidiaries in manufacturing, mining, or resource extraction, tariff
+  exposure exists at the subsidiary level and should flow through to consolidated financials
+- Services companies that also manufacture products (e.g., software + hardware) face
+  tariff exposure on the goods component only
+
+EVALUATION FOCUS:
+For a pure services issuer: has_tariff_discussion should be false unless they explicitly
+note demand-side impact (reduced client capex, client cost pressures) or subsidiary exposure.
+If a services company scores high (2-3) without naming a specific downstream mechanism,
+the disclosure is likely BOILERPLATE — downgrade to BOILERPLATE regardless of language
+specificity. A services firm citing "global trade uncertainty" with no client-specific
+or subsidiary-specific content is the canonical boilerplate pattern for this sector.

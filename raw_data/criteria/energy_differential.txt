@@ -1,0 +1,21 @@
+ACTIVE TARIFF INSTRUMENT: energy_differential
+LEGAL BASIS: Originally IEEPA; struck down by US Supreme Court Feb 20, 2026.
+             Replaced by §122 Trade Act of 1974 (10% global tariff) eff. Feb 24, 2026.
+
+CURRENT RATE: 10% on non-CUSMA-compliant energy products and potash
+- In scope: crude oil, natural gas, LNG, refined products, coal, uranium
+- Potash: 10% (reduced from 25% effective Mar 7, 2025)
+- CUSMA-compliant Canadian energy: EXEMPT under both IEEPA and §122 replacement
+  Net exposure for CUSMA-qualifying Canadian energy issuers: effectively 0%
+
+RATE CONTINUITY NOTE:
+IEEPA tariff struck down Feb 20, 2026. §122 replacement imposes same 10% rate.
+Valid for up to 150 days pending Congressional approval. For filings dated after
+Feb 24, 2026: the applicable legal authority changed but the economic exposure is identical.
+
+EVALUATION FOCUS:
+Does the issuer disclose whether their product qualifies for CUSMA-origin treatment?
+Pipeline operators: address Buy American requirements on cross-border infrastructure.
+Refiners with US operations: distinguish between upstream (10% energy exposure) and
+downstream (CUSMA-protected refined products). Rate quantification as $/boe or $/mcf
+or netback reduction is the standard for SPECIFIC_QUANTITATIVE scoring.

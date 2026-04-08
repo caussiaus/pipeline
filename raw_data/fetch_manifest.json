@@ -1,0 +1,21 @@
+{
+  "fetched": {
+    "retaliatory_tariffs_html": "/home/casey/tariff-sedar-pipeline/raw_data/retaliatory_tariffs_page.html",
+    "s232_steel_aluminum": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/steel_aluminum.html",
+    "s232_copper": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/copper_expansion.html",
+    "s232_auto_amendment_10925": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/auto_amendment_10925.html",
+    "s232_auto_parts_inclusions_2026": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/auto_parts_inclusions_2026.html",
+    "s232_medium_heavy_vehicles": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/medium_heavy_vehicles.html",
+    "cusma_chapter_02": "/home/casey/tariff-sedar-pipeline/raw_data/cusma/chapter_02.html",
+    "cusma_tariff_schedule": "/home/casey/tariff-sedar-pipeline/raw_data/cusma/tariff_schedule_page.html",
+    "cfib_tariff_summary": "/home/casey/tariff-sedar-pipeline/raw_data/rate_sources/cfib_tariff_summary.html",
+    "fr_s232_auto_original": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/auto_fr_2025-05930.html",
+    "bis_s232_407_derivatives": "/home/casey/tariff-sedar-pipeline/raw_data/section_232_proclamations/bis_407_derivatives_aug2025.html",
+    "fr_lumber_ad_ar6": "/home/casey/tariff-sedar-pipeline/raw_data/softwood_lumber/lumber_ad_ar6_fr_2025-17453.html",
+    "ca_softwood_lumber_combined": "/home/casey/tariff-sedar-pipeline/raw_data/softwood_lumber/ca_softwood_combined_rates.html",
+    "ca_gazette_phase1_surtax": "/home/casey/tariff-sedar-pipeline/raw_data/retaliatory_legal/gazette_phase1_surtax_sor66.html",
+    "blakes_timeline": "/home/casey/tariff-sedar-pipeline/raw_data/rate_sources/blakes_timeline.html"
+  },
+  "concordance_pdf": null,
+  "concordance_csv": null
+}

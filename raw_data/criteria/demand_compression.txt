@@ -1,0 +1,22 @@
+ACTIVE TARIFF INSTRUMENT: demand_compression
+MECHANISM: Indirect tariff transmission via reduced consumer/business demand
+
+CURRENT CONTEXT:
+- US baseline 10% "reciprocal" tariff eff. Apr 5, 2025 (does not apply to Canada/Mexico)
+- §122 replacement 10% global tariff eff. Feb 24, 2026 (CUSMA-compliant goods exempt)
+- Domestic Canadian inflation from retaliatory tariffs (steel, aluminum, autos retained)
+- Cross-border trade volume reduction reduces demand for transportation, logistics, retail
+
+TYPICAL EXPOSURE CHANNELS:
+- Retail: US consumer spending reduction → lower discretionary demand for Canadian goods
+- Transportation/logistics: cross-border freight volume decline
+- Accommodation/food services: US visitor decline from travel sentiment, exchange rate
+- Wholesale: margin compression on US-sourced goods re-sold in Canada
+
+EVALUATION FOCUS:
+Demand compression is a macro-level, indirect effect. Score BOILERPLATE unless the
+issuer specifically names a tariff mechanism that directly affects their cost base or
+revenue line. Generic statements about "trade uncertainty reducing demand" without
+naming a specific tariff program are BOILERPLATE regardless of language sophistication.
+Score earnings_tariff_score ≥ 2 only if a specific trade mechanism is named and its
+effect on this company's revenue is described with entity-specific evidence.

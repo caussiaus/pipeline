@@ -1,0 +1,450 @@
+{
+  "HS_47": {
+    "mechanism": "cvd_ad_softwood_lumber",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "47010000,47020000"
+  },
+  "HS_87": {
+    "mechanism": "section_232_auto",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 3,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "87032200,87032300,87032400,87033100,87033200,87033300,87034010,87034090,87035000,87036010,87036090,87037000,87038000,87039000,87042190,87043100,87044190,87045100,87046000,87082200"
+  },
+  "HS_48": {
+    "mechanism": "cvd_ad_softwood_lumber",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "48171000,48181000,48182000,48183000,48189000,48191000,48192000,48193000,48194000,48201000,48202000,48203000,48204000,48205000,48209000,48236900"
+  },
+  "HS_72": {
+    "mechanism": "section_232_steel_aluminum",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 3,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "72061000,72069000,72071100,72071200,72071900,72072000,72081000,72082500,72082600,72082700,72083600,72083700,72083800,72083900,72084000,72085100,72085200,72085300,72085400,72089000"
+  },
+  "HS_73": {
+    "mechanism": "section_232_steel_aluminum",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 3,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "73011000,73012000,73021000,73023010,73023090,73024000,73029000,73041100,73041900,73042200,73042300,73042400,73042900,73043100,73043900,73044100,73044900,73045100,73045900,73049000"
+  },
+  "HS_76": {
+    "mechanism": "section_232_steel_aluminum",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 3,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "76011000,76012000,76041000,76042100,76042900,76051100,76051900,76052100,76052900,76061100,76061200,76069100,76069200,76071100,76071900,76072000,76081000,76082000,76090000,76101000"
+  },
+  "HS_44": {
+    "mechanism": "cvd_ad_softwood_lumber",
+    "cap_earnings": 3,
+    "cap_supply_chain": 3,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "44071100,44071200,44071300,44071400,44071900,44072100,44072200,44072300,44072500,44072600,44072700,44072800,44072900,44079100,44079200,44079300,44079400,44079500,44079600,44079700"
+  },
+  "HS_88": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "88061000,88062100,88062200,88062300,88062400,88062900,88069100,88069200,88069300,88069400,88069900"
+  },
+  "HS_02": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "02071191,02071192,02071291,02071292,02071392,02071393,02071421,02071422,02071491,02071492,02071493,02072411,02072412,02072491,02072492,02072511,02072512,02072591,02072592,02072620"
+  },
+  "HS_96": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "96031010,96031020,96032900,96033010,96033090,96034010,96034090,96035000,96039010,96039020,96039030,96039090,96040000,96050000,96100000,96110000,96131000,96132000,96138010,96138090"
+  },
+  "HS_49": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "49111000,49119100,49119900"
+  },
+  "HS_64": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "64011011,64011019,64011020,64019211,64019212,64019220,64019291,64019292,64019911,64019912,64019919,64019920,64021200,64021910,64021990,64022011,64022019,64022020,64029110,64029190"
+  },
+  "HS_65": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "65040010,65040090,65050010,65050020,65050031,65050039,65050040,65050090,65061010,65061090,65069100,65069910,65069920,65069990"
+  },
+  "HS_66": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "66011000,66019100,66019900,66020010,66020090"
+  },
+  "HS_69": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "69101010,69101090,69109000,69111090,69119000,69120010,69120090,69131000,69139090,69141090,69149000"
+  },
+  "HS_70": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "70131000,70132200,70132800,70133300,70133700,70134100,70134200,70134900,70139100,70139900"
+  },
+  "HS_91": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "91011100,91011900,91021100,91021200,91021900,91022100,91022900,91029110,91029190,91029900"
+  },
+  "HS_95": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "95030010,95030090,95043000,95044000,95045000,95049000,95051000,95059000,95061100,95061200,95061900,95062100,95062900,95063200,95063900,95064000,95065100,95065910,95065990,95066100"
+  },
+  "HS_94": {
+    "mechanism": "cvd_ad_softwood_lumber",
+    "cap_earnings": 2,
+    "cap_supply_chain": 3,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "94013110,94013190,94013910,94013990,94014100,94014900,94015210,94015290,94015310,94015390,94015910,94015990,94016110,94016190,94016910,94016990,94017110,94017190,94017910,94017990"
+  },
+  "HS_42": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "42010010,42010090,42021100,42021210,42021290,42021900,42022100,42022210,42022290,42022900,42023100,42023210,42023290,42023900,42029110,42029120,42029190,42029210,42029220,42029290"
+  },
+  "HS_82": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "82011010,82011090,82013010,82013090,82014010,82014090,82015000,82016010,82016090,82019010,82019021,82019029,82019091,82019099,82021000,82022000,82023100,82023900,82024000,82029100"
+  },
+  "HS_83": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "83011000,83013000,83014010,83014020,83014090,83015000,83016000,83017090,83021000,83022000,83024110,83024190,83024200,83024900,83025000,83026010,83026090,83030000,83040000,83051010"
+  },
+  "HS_84": {
+    "mechanism": "input_cost_steel_derivative",
+    "cap_earnings": 2,
+    "cap_supply_chain": 3,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "84145110,84145190,84181010,84181020,84181090,84182100,84182900,84183010,84183090,84184010,84184090,84185010,84186990,84191100,84191200,84191900,84198100,84221110,84221190,84254200"
+  },
+  "HS_85": {
+    "mechanism": "input_cost_steel_derivative",
+    "cap_earnings": 2,
+    "cap_supply_chain": 3,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "85081100,85081900,85086000,85094010,85094090,85098010,85098090,85101000,85102010,85102090,85103000,85131010,85131090,85161090,85162900,85163100,85163210,85163290,85163310,85164000"
+  },
+  "HS_93": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "93020000,93031000,93032010,93032090,93033010,93033090,93039010,93039090,93040010,93040090,93062100,93062900,93063010,93063090"
+  },
+  "HS_71": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "71023900,71069100,71069200,71081200,71081300,71101100,71101900,71102100,71102900,71129100,71129900,71131110,71131190,71131910,71131990,71132010,71132090,71159000,71161000,71162010"
+  },
+  "HS_01": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "01051122,01059492,01059912"
+  },
+  "HS_40": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "40111000,40112000,40113000,40114000,40115000,40117010,40117090,40118010,40118090,40119010,40119090,40121100,40121200,40121300,40121900,40122010,40122020,40122090,40129010,40129090"
+  },
+  "HS_19": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "19012012,19012022,19019032,19019034,19019052,19019054,19021110,19021121,19021129,19021190,19021911,19021912,19021919,19021921,19021922,19021923,19021929,19021991,19021992,19021993"
+  },
+  "HS_04": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "04011020,04012020,04014020,04015020,04021020,04022112,04022122,04022912,04022922,04029120,04029920,04032010,04032031,04032039,04039012,04039092,04041010,04041022,04041090,04049020"
+  },
+  "HS_07": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "07020010,07020021,07020029,07020091,07020099,07082030,07082090"
+  },
+  "HS_08": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "08029900,08051000,08052100,08052200,08052900,08054000,08055000,08071100,08093010,08093021,08093029,08112000"
+  },
+  "HS_09": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "09011100,09011200,09012100,09012200,09019000,09021010,09021090,09022000,09023010,09023090,09024000,09030000,09041100,09041210,09041290,09042100,09042200,09051000,09052000,09061100"
+  },
+  "HS_10": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "10011910,10011920,10019910,10019920,10029000,10039011,10039012,10039091,10039092,10049000,10062000,10063000"
+  },
+  "HS_11": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "11010010,11010020"
+  },
+  "HS_12": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "12051000"
+  },
+  "HS_13": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "13021900"
+  },
+  "HS_15": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "15042000,15081000,15119000,15121919,15121929,15141100,15141900,15149100,15149900,15171010,15171020,15179021,15179022"
+  },
+  "HS_16": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "16010011,16010019,16010021,16010022,16010023,16010031,16010032,16010090,16021010,16021090,16022021,16022022,16022031,16022032,16022090,16023111,16023112,16023113,16023114,16023191"
+  },
+  "HS_17": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "17011210,17011290,17011310,17011390,17011400,17019190,17019990,17022000,17031010,17031090,17039010,17039090,17041000,17049010,17049020,17049090"
+  },
+  "HS_18": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "18062022,18063100,18069012,18069090"
+  },
+  "HS_20": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "20011000,20081110,20081190,20091200"
+  },
+  "HS_39": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "39181010,39181090,39189010,39189090,39191099,39221000,39222000,39229000,39232190,39232990,39241000,39249000,39251000,39252000,39253000,39259000"
+  },
+  "HS_21": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "21031000,21032010,21032090,21033010,21033020,21039010,21041000,21050092,21069021,21069032,21069034,21069035,21069039,21069052,21069094,21069095"
+  },
+  "HS_22": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "22021000,22029931,22029933,22029939,22030000,22041010,22041090,22042110,22042121,22042122,22042123,22042124,22042125,22042126,22042127,22042128,22042131,22042132,22042141,22042149"
+  },
+  "HS_23": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "23099032"
+  },
+  "HS_24": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "24011010,24011091,24011099,24012010,24012090,24013000,24021000,24022000,24029000,24031100,24031900,24039110,24039120,24039190,24039910,24039920,24039990,24041110,24041190,24041200"
+  },
+  "HS_25": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "25051000"
+  },
+  "HS_33": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "33030000,33041000,33042000,33043000,33049100,33049990,33051000,33052000,33053000,33059000,33061000,33062000,33071000,33072000,33073000,33074100,33074900"
+  },
+  "HS_34": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "34011110,34011190,34011900,34012020,34012090,34013000,34060090"
+  },
+  "HS_35": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "35011000,35021120,35021920,35022000,35040012,35061000"
+  },
+  "HS_97": {
+    "mechanism": "demand_compression",
+    "cap_earnings": 2,
+    "cap_supply_chain": 2,
+    "cap_macro": 2,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "97019110"
+  },
+  "HS_63": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 1,
+    "cap_supply_chain": 2,
+    "cap_macro": 1,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "63011000,63012000,63013000,63014000,63019000,63021000,63022100,63022200,63022900,63023100,63023200,63023900,63024000,63025100,63025300,63025910,63025990,63026000,63029100,63029300"
+  },
+  "HS_62": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 1,
+    "cap_supply_chain": 2,
+    "cap_macro": 1,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "62012000,62013010,62013090,62014010,62014090,62019000,62022000,62023000,62024000,62029010,62029090,62031100,62031200,62031910,62031990,62032200,62032300,62032910,62032990,62033100"
+  },
+  "HS_61": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 1,
+    "cap_supply_chain": 2,
+    "cap_macro": 1,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "61012000,61013000,61019000,61021000,61022000,61023000,61029000,61031010,61031090,61032200,61032300,61032900,61033100,61033200,61033300,61033910,61033990,61034100,61034200,61034300"
+  },
+  "HS_57": {
+    "mechanism": "cusma_agri_conditional",
+    "cap_earnings": 1,
+    "cap_supply_chain": 2,
+    "cap_macro": 1,
+    "max_observed_rate": 25.0,
+    "hs_codes_sample": "57011010,57011090,57019010,57019090,57021000,57022000,57023100,57023200,57023900,57024100,57024200,57024900,57025010,57025090,57029100,57029200,57029910,57029990,57031010,57031090"
+  }
+}

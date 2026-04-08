@@ -1,0 +1,25 @@
+ACTIVE TARIFF INSTRUMENT: section_232_steel_aluminum
+LEGAL BASIS: Trade Expansion Act 1962 §232; Proclamations 9704/9980 (steel/Al),
+             Proc. 10947 (rate increase June 4, 2025), Proc. 10962 (Apr 2026)
+
+CURRENT RATES:
+- Steel and aluminum: 25% eff. Mar 12, 2025 → INCREASED to 50% eff. June 4, 2025
+- Copper (semi-finished products, intensive copper derivatives): 50% eff. Aug 1, 2025
+  Rate on copper content only; ores, concentrates, cathodes, anodes, scrap excluded
+- 407 additional steel/aluminum derivative product categories added Aug 2025
+- Full customs value basis confirmed eff. Apr 6, 2026 (Proc. 10962)
+  No partial-content deductions for steel/aluminum — full invoice value is dutiable basis
+
+CUSMA TREATMENT:
+- CUSMA exemption: NONE — §232 applies regardless of CUSMA origin status
+
+CANADIAN RETALIATORY:
+- 25% on US steel and aluminum (eff. Mar 13, 2025)
+- RETAINED after Sept 1, 2025 — NOT removed in the cleanup that eliminated Phase 1 goods
+
+EVALUATION FOCUS:
+Complete disclosure identifies specific metal types, HS classifications, and export or
+import volumes affected. Rate should be cited as 50% (not 25%) for any period after
+June 4, 2025. Disclosures still citing 25% after June 2025 are factually incomplete.
+If company exports steel/aluminum to US: supply chain score ≥ 2 is warranted.
+If company imports US steel/aluminum inputs: check Dec 26 2025 Canadian surtax exposure.

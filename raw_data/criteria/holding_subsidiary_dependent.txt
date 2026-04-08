@@ -1,0 +1,20 @@
+ACTIVE TARIFF INSTRUMENT: holding_subsidiary_dependent
+SCOPE: Management companies and holding entities with no direct product tariff exposure
+
+EVALUATION APPROACH:
+- No direct tariff exposure applies to the issuer's own operations
+- Tariff risk exists ONLY through consolidated subsidiary operations
+- If subsidiary operates in manufacturing (NAICS 33x), mining (21x), energy (211),
+  or forestry (113/321), the holding company inherits exposure through earnings consolidation
+
+WHAT TO LOOK FOR:
+- Segment reporting that breaks out subsidiary tariff impact by operating unit
+- Management commentary on subsidiary-level cost or revenue impacts
+- Any discussion of altering subsidiary operations in response to tariffs
+
+EVALUATION FOCUS:
+If the filing discusses only the issuer entity and contains no subsidiary-level tariff
+disclosure: return has_tariff_discussion = false.
+If subsidiary exposure is disclosed: rate the evidence quality based on the subsidiary's
+sector, not the holding company's classification. A holding company that names a
+manufacturing subsidiary and quantifies its §232 exposure earns SPECIFIC_QUANTITATIVE.

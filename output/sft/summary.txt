@@ -1,0 +1,4 @@
+Pass-1: 500 positive + 500 hard-negative = 1000 pairs
+Pass-2: 200 gold + 23 FLS-correction = 223 pairs
+Total:  1223 training examples
+Output: output/sft

@@ -1,0 +1,25 @@
+{
+  "ok": false,
+  "n_filings": 602,
+  "parse_index_exists": true,
+  "n_parse_rows": 602,
+  "n_parse_errors": 0,
+  "n_parse_missing_filings": 0,
+  "parse_complete": true,
+  "chunks_parquet_exists": true,
+  "n_chunks": 399320,
+  "chunks_llm_exists": false,
+  "n_chunks_llm": 0,
+  "filings_llm_exists": false,
+  "n_filings_llm": 0,
+  "filings_llm_aligned": false,
+  "issuer_year_exists": false,
+  "n_issuer_year": 0,
+  "review_exists": false,
+  "messages": [
+    "Missing chunks_llm parquet: output/llm_raw/chunks_llm.parquet",
+    "Missing filings_llm.csv: output/csv/filings_llm.csv",
+    "Missing issuer_year CSV: output/csv/issuer_year_tariff_signals.csv",
+    "Missing review CSV (required): output/human_review/review_ready.csv"
+  ]
+}

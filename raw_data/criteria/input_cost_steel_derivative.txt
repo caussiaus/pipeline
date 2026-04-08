@@ -1,0 +1,28 @@
+ACTIVE TARIFF INSTRUMENT: input_cost_steel_derivative
+LEGAL BASIS: Canadian Customs Tariff; Order-in-Council (Dec 26, 2025)
+
+CANADIAN SURTAX ON STEEL DERIVATIVE IMPORTS, eff. Dec 26, 2025:
+- 25% Canadian tariff on ALL global imports of steel derivative products
+- Products in scope (C$10B+): doors, windows, wire, fasteners, bridges, wind towers,
+  structural steel components, rebar derivatives, boilers, radiators
+- CUSMA carve-out maintained for US steel used in exempt manufacturing categories
+
+TRQ REDUCTIONS (eff. Dec 26, 2025):
+- Non-FTA partners: quotas reduced from 50% to 20% of 2024 import levels
+  Over-quota volumes: 50% surtax
+- Non-CUSMA FTA partners: quotas reduced from 100% to 75% of 2024 import levels
+
+REMISSION EXPIRY:
+- Canadian retaliatory tariff remission on US steel for manufacturing expired Jan 31, 2026
+  EXCEPT: steel for auto/aerospace manufacturing and ALL aluminum → extended to Jun 30, 2026
+
+US EXPOSURE (for Canadian manufacturers importing US steel inputs):
+- §232 50% on US-origin steel still applies to US exporters; buying from US sources
+  is no cheaper than elsewhere — domestic sourcing pressure increases
+- 407 additional derivative categories added to US §232 scope Aug 2025
+
+EVALUATION FOCUS:
+The Dec 26, 2025 steel derivative tariff is a NEW event distinct from earlier §232 exposure.
+Filings after Jan 2026 should address it separately. If management only references
+historical §232 steel exposure without the Dec 26 Canadian surtax, the disclosure is
+incomplete for post-Jan 2026 periods.

@@ -1,0 +1,3 @@
+filing_id,local_path,profile_id,ticker,issuer_name,filing_type,filing_date,naics,profile_number
+b8a5820e5c1525cb50d7ca22de9d9cc6,/home/casey/pdf-agents/PDFs/4719349 Stella Jones ESG Report 2024_FINAL_ENG_0.pdf,,STELLA_JONES_ESG,Stella Jones Inc.,ESG_REPORT,2024-01-01,,
+b940416d3034869545493f17aa5ba50f,/home/casey/pdf-agents/PDFs/annual-integrated-report-2023.pdf,,UNKNOWN_ESG,Unknown / multi-entity,INTEGRATED_ANNUAL,2023-01-01,,

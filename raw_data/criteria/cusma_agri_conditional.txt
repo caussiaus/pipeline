@@ -1,0 +1,24 @@
+ACTIVE TARIFF INSTRUMENT: cusma_agri_conditional
+LEGAL BASIS: CUSMA Chapter 2 (market access); Annex 2-B (tariff schedule)
+
+CUSMA PROTECTION:
+- Most Canadian agricultural and food products qualify for CUSMA preferential treatment
+- CUSMA-origin goods enter US tariff-free; Rules of Origin (CUSMA Ch. 4) apply
+- Products must meet regional value content thresholds to qualify
+
+CANADIAN RETALIATORY TARIFFS — CURRENT STATUS (post Sept 1, 2025):
+- Phase 1 retaliatory list (Mar 4 – Sept 1, 2025): US agri-food, OJ, bourbon, processed
+  foods — ALL REMOVED effective September 1, 2025
+- After Sept 1, 2025: NO Canadian retaliatory tariffs apply to US agri-food imports
+  (only steel, aluminum, and autos retained)
+
+RESIDUAL EXPOSURE:
+- US inputs (packaging, machinery) subject to §232 steel/aluminum duties if not CUSMA
+- Cannabis, specialty foods: check for US market access vs. retaliatory tariff impacts
+
+EVALUATION FOCUS:
+Any filing that discloses ongoing exposure to "Canadian retaliatory tariffs on US food
+products" for a period after September 1, 2025, is citing expired measures.
+Flag these as potentially misleading or stale disclosures. CUSMA-origin food producers
+should have minimal US tariff exposure — high scores require specific evidence of
+Rules-of-Origin failure or non-qualifying input sourcing.

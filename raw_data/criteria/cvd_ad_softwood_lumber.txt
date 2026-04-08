@@ -1,0 +1,29 @@
+ACTIVE TARIFF INSTRUMENT: cvd_ad_softwood_lumber
+LEGAL BASIS: CVD case C-122-858; AD case A-122-857 (access.trade.gov);
+             Trade Expansion Act §232 (Oct 14, 2025 overlay)
+
+CVD RATES — AR5 Final (current cash deposit rates):
+- All-others rate: 14.63%
+- Range by producer: 12.12%–16.82%
+- Producer-specific rates binding for all shipments from that company
+
+AD RATES — AR6 Amended Final (FR 2025-17453, Sept 11, 2025):
+- Canfor Corporation: 35.53%
+- West Fraser Timber: 9.65%
+- All-others: varies — see access.trade.gov case A-122-857 for full producer list
+
+§232 OVERLAY — NEW, eff. Oct 14, 2025 (no CUSMA exemption):
+- 10% additional tariff on all softwood timber and lumber imports
+- 25% on upholstered wooden furniture; 25% on kitchen cabinets and vanities
+  (increasing to 30% furniture / 50% cabinets+vanities eff. Jan 1, 2026)
+- This §232 layer is additive on top of CVD/AD orders — not stacked with IEEPA
+
+COMBINED EXPOSURE (all-others producer, softwood lumber):
+CVD 14.63% + AD ~20% + §232 10% ≈ 44–50% total tariff load
+
+EVALUATION FOCUS:
+Complete disclosure names the specific CVD/AD case and their producer-specific rate.
+Incomplete disclosure cites generic "trade tariffs" without distinguishing CVD, AD,
+and §232 layers. The Oct 14, 2025 §232 addition is a material new event — any filing
+dated after Oct 2025 should reference it. Producer-specific rate disclosure scores higher
+than all-others rate disclosure on disclosure_quality.

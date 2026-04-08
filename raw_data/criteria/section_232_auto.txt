@@ -1,0 +1,28 @@
+ACTIVE TARIFF INSTRUMENT: section_232_auto
+LEGAL BASIS: Trade Expansion Act 1962 §232; Proclamation 10908 (Mar 26, 2025)
+
+RATES & SCOPE:
+- Rate: 25% ad valorem on passenger vehicles, SUVs, minivans, light trucks (HS 8703)
+- Rate: 25% on auto parts (HS 8407, 8408, 8409, 8706–8708) eff. May 3, 2025
+- Medium/heavy duty trucks, buses, and their parts added to scope Oct 22, 2025
+- Parts inclusions window: open Apr 1–14, 2026 — additional parts categories may be added
+
+CUSMA TREATMENT:
+- CUSMA exemption: NONE — Art. 32.2 national security carve-out explicitly overrides CUSMA
+- CUSMA-compliant auto PARTS (not vehicles): tariff-free eff. May 3, 2025
+  Exception: knock-down kits and parts compilations — NOT eligible, full value applies
+- US-content offset credit (Proc. 10925): tariff applies only to the non-US-origin content
+  value of the vehicle; US-origin portion is deducted from dutiable basis
+  - Documentation required per model year; must be certified to CBP
+  - Overstatement penalty: retroactive full-value tariff from Apr 3, 2025
+
+CANADIAN RETALIATORY:
+- 25% on US motor vehicles (non-CUSMA) and on US-content of CUSMA-compliant US vehicles
+  eff. Apr 9, 2025 — RETAINED after Sept 1, 2025 (not removed)
+
+EVALUATION FOCUS:
+Complete disclosure names the specific tariff, identifies affected vehicle platforms or
+plants, quantifies non-US content, and addresses the CUSMA offset credit. Incomplete
+disclosure uses generic "trade policy uncertainty" language without asset-level detail.
+cusma_offset_credit_mentioned = true only if the filing explicitly discusses the
+US-origin content deduction mechanism from Proclamation 10925.

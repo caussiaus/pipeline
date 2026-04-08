@@ -1,0 +1,20 @@
+ACTIVE TARIFF INSTRUMENT: minimal_no_vector
+SECTOR: No credible direct tariff transmission pathway identified for this NAICS code
+
+EVALUATION APPROACH:
+- Apply strict rejection criteria for tariff relevance
+- Return has_tariff_discussion = false unless the company explicitly names a specific tariff
+  program and directly links it to their own costs or revenues
+- Generic language about "trade policy", "geopolitical risk", or "supply chain uncertainty"
+  without naming a specific duty instrument should NOT score as tariff disclosure
+
+WHAT COUNTS AS REAL DISCLOSURE (for any sector):
+- Named tariff program (Section 232, CVD/AD, CUSMA retaliatory) AND
+- Company-specific impact (named product, facility, customer, or cost line) AND
+- At minimum one directional claim (cost increase, revenue decrease, margin impact)
+
+BOILERPLATE PATTERNS TO REJECT:
+"We monitor developments in international trade" — not a disclosure
+"Trade policy changes may affect our business" — not a disclosure
+"Geopolitical tensions may disrupt supply chains" — not a disclosure
+Only escalate to true if all three conditions above are met explicitly.
